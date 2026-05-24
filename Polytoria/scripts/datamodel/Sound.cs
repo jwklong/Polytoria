@@ -207,6 +207,7 @@ public sealed partial class Sound : Dynamic
 				: _audioPlayer3D != null ? (float)_audioPlayer3D.Stream.GetLength() : 0;
 
 	[ScriptProperty] public PTSignal Loaded { get; private set; } = new();
+	[ScriptProperty] public PTSignal Finished { get; private set; } = new();
 
 	[SyncVar]
 	public bool ServerIsPlaying
@@ -316,6 +317,7 @@ public sealed partial class Sound : Dynamic
 		{
 			ServerIsPlaying = false;
 		}
+		Finished.Invoke();
 	}
 
 	[ScriptMethod]
