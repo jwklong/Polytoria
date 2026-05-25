@@ -65,6 +65,7 @@ public partial class InsertMenuPopup : PopupPanel
 			"StringValue",
 			"Vector2Value",
 			"Vector3Value",
+			"QuaternionValue",
 			"ColorValue",
 			"InstanceValue"
 		},
