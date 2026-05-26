@@ -20,6 +20,11 @@ public partial class ResourceAsset : BaseAsset
 	public Resource? Resource { get; private set; }
 	public bool IsResourceLoaded = false;
 	public PTSignal ResourceLoadedInternal { get; private set; } = new();
+	
+	[ScriptProperty]
+	public bool Loading => !IsResourceLoading;
+	
+	[ScriptProperty] public PTSignal Loaded { get; private set; } = new();
 
 	public override void Init()
 	{
@@ -62,6 +67,7 @@ public partial class ResourceAsset : BaseAsset
 		Resource = resource;
 		IsResourceLoaded = true;
 		ResourceLoadedInternal.Invoke();
+		Loaded.Invoke();
 		ResourceLoaded?.Invoke(resource);
 	}
 }
